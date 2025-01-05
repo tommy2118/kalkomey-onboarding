@@ -1,0 +1,14 @@
+/* Custom styles that extend Tailwind */
+.prose pre {
+    margin: 1em 0;
+    padding: 1em;
+    border-radius: 0.375rem;
+}
+
+.nav-link {
+    @apply hover:text-kalkomey-orange transition-colors duration-200;
+}
+
+.active-nav-link {
+    @apply text-kalkomey-orange font-semibold;
+}
