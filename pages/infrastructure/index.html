@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Infrastructure Overview - Kalkomey Engineering">
+    <title>Infrastructure Overview - Kalkomey</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../assets/images/favicon.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kalkomey-blue': '#005596',
+                        'kalkomey-orange': '#FF6B00'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between h-16 items-center">
+                <a href="../../index.html" class="flex items-center">
+                    <i class="fas fa-arrow-left text-xl text-kalkomey-blue"></i>
+                    <span class="ml-2 text-xl font-semibold text-kalkomey-blue">Back to Onboarding</span>
+                </a>
+                <h1 class="text-xl font-bold text-kalkomey-blue">Infrastructure Overview</h1>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Introduction -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Introduction</h2>
+            <p class="text-gray-600 leading-relaxed">
+                This document articulates the architecture of our web infrastructure, which is designed for security, efficient service routing, and scalability, particularly for our Rails applications. It delineates the interaction between components to provide a high-availability environment. The components below that include HAProxy, Consul, Nomad, and Vault are collectively referred to as the <strong>"KE-Stack."</strong>
+            </p>
+        </div>
+
+        <!-- Cloudflare Configuration -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-2xl font-semibold text-kalkomey-blue mb-4">Cloudflare Configuration</h3>
+            <p class="text-gray-600 leading-relaxed">
+                Cloudflare is the first point of engagement for external user requests, providing security enhancements and DDoS protection. For external requests to <strong>www.hunter-ed.com</strong>, Cloudflare terminates TLS, establishing secure connections with users. Cloudflare then proxies these secure connections to our AWS ALBs, managing traffic flow to the backend.
+            </p>
+        </section>
+
+        <!-- AWS Application Load Balancers -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-2xl font-semibold text-kalkomey-blue mb-4">AWS Application Load Balancers (ALBs)</h3>
+            <p class="text-gray-600 leading-relaxed">
+                Our infrastructure utilizes two AWS ALBs: one for external traffic and one dedicated to internal traffic.
+            </p>
+            <ul class="list-disc ml-6 text-gray-600">
+                <li>The <strong>external ALB</strong> works in tandem with Cloudflare to route external requests to the external HAProxy cluster after performing TLS termination for domains like <strong>ke-eng.io</strong>.</li>
+                <li>The <strong>internal ALB</strong> handles server-to-server requests within our network, bypassing Cloudflare to ensure internal traffic remains secure and efficient.</li>
+            </ul>
+        </section>
+
+        <!-- HAProxy Configuration -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-2xl font-semibold text-kalkomey-blue mb-4">HAProxy Configuration</h3>
+            <p class="text-gray-600 leading-relaxed">
+                HAProxy clusters handle load balancing for both external and internal traffic:
+            </p>
+            <ul class="list-disc ml-6 text-gray-600">
+                <li><strong>External HAProxy cluster:</strong> Handles client-facing traffic routed through Cloudflare and the external ALB.</li>
+                <li><strong>Internal HAProxy cluster:</strong> Manages server-to-server traffic routed from the internal ALB.</li>
+            </ul>
+            <p class="text-gray-600 mt-4">
+                HAProxy integrates with Consul for dynamic service discovery based on Nomad's dynamic port assignments.
+            </p>
+        </section>
+
+        <!-- Service Discovery with Consul -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-2xl font-semibold text-kalkomey-blue mb-4">Service Discovery with Consul</h3>
+            <p class="text-gray-600 leading-relaxed">
+                Consul acts as the cornerstone of our service discovery system, maintaining a registry of services and their health status. HAProxy uses this registry to route traffic to the most appropriate service instances dynamically, enabling:
+            </p>
+            <ul class="list-disc ml-6 text-gray-600">
+                <li>Efficient traffic routing.</li>
+                <li>Dynamic updates when services or ports change due to Nomad orchestration.</li>
+            </ul>
+        </section>
+
+        <!-- Nomad Orchestration -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-2xl font-semibold text-kalkomey-blue mb-4">Nomad Orchestration</h3>
+            <p class="text-gray-600 leading-relaxed">
+                Nomad orchestrates the deployment, maintenance, and scaling of services. It dynamically assigns ports to services, avoiding conflicts on shared hosts. These ports are registered with Consul for efficient service discovery and traffic routing within the infrastructure.
+            </p>
+        </section>
+
+        <!-- Traffic Flow -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-2xl font-semibold text-kalkomey-blue mb-4">Traffic Flow</h3>
+            <p class="text-gray-600 leading-relaxed">
+                The journey of a request through our infrastructure:
+            </p>
+            <ul class="list-disc ml-6 text-gray-600">
+                <li><strong>External Traffic:</strong> Begins at Cloudflare for TLS termination, then flows to the external ALB, HAProxy cluster, and eventually the appropriate backend service.</li>
+                <li><strong>Internal Traffic:</strong> Starts at the internal ALB, bypasses Cloudflare, and is routed through the internal HAProxy cluster to the service instance.</li>
+            </ul>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-2xl font-semibold text-kalkomey-blue mb-4">Conclusion</h3>
+            <p class="text-gray-600 leading-relaxed">
+                Our infrastructure combines Cloudflare for external requests, AWS ALBs for routing, HAProxy clusters for load balancing, and Consul integrated with Nomad for dynamic service discovery and orchestration. This robust architecture ensures our Rails applications can scale efficiently while maintaining high availability and security.
+            </p>
+        </section>
+    </main>
+
+    <footer class="bg-white mt-12">
+        <div class="container mx-auto px-4 py-6">
+            <p class="text-center text-gray-600">&copy; <span id="current-year"></span> Kalkomey Enterprises</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+
