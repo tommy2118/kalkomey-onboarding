@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ruby Development Standards">
+    <title>Ruby Development Standards</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../../assets/images/favicon.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kalkomey-blue': '#005596',
+                        'kalkomey-orange': '#FF6B00'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <a href="../" class="flex items-center">
+                    <i class="fas fa-arrow-left text-xl text-kalkomey-blue"></i>
+                    <span class="ml-2 text-xl font-semibold text-kalkomey-blue">Back to Standards</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-sm p-6">
+            <h1 class="text-3xl font-bold text-gray-900">Ruby Development Standards</h1>
+            <p class="mt-2 text-gray-600">Best practices for Ruby and Ruby on Rails development at Kalkomey.</p>
+        </div>
+
+        <div class="mt-6 bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-2xl font-semibold text-kalkomey-blue">Guides and Tools</h2>
+            <ul class="mt-4 space-y-2 text-gray-600">
+                <li>
+                    <i class="fas fa-check text-green-500 mr-2"></i>
+                    Follow the <a href="https://rubystyle.guide" class="text-kalkomey-blue hover:text-kalkomey-orange underline" target="_blank" rel="noopener">Ruby Style Guide</a>.
+                </li>
+                <li>
+                    <i class="fas fa-check text-green-500 mr-2"></i>
+                    Use <a href="https://rspec.info" class="text-kalkomey-blue hover:text-kalkomey-orange underline" target="_blank" rel="noopener">RSpec</a> for testing.
+                </li>
+                <li>
+                    <i class="fas fa-check text-green-500 mr-2"></i>
+                    Implement <a href="https://rails.rubystyle.guide" class="text-kalkomey-blue hover:text-kalkomey-orange underline" target="_blank" rel="noopener">Rails Style Guide</a>.
+                <li>
+                    <i class="fas fa-check text-green-500 mr-2"></i>
+                    Align with the <a href="https://guides.rubyonrails.org" class="text-kalkomey-blue hover:text-kalkomey-orange underline" target="_blank" rel="noopener">Rails Guides</a>.
+                </li>
+                <li>
+                    <i class="fas fa-check text-green-500 mr-2"></i>
+                    Use <a href="https://docs.rubocop.org" class="text-kalkomey-blue hover:text-kalkomey-orange underline" target="_blank" rel="noopener">RuboCop</a> for static code analysis.
+                </li>
+                <li>
+                    <i class="fas fa-check text-green-500 mr-2"></i>
+                    Include <code>rubocop_configs</code> for standardized linting.
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12">
+        <div class="container mx-auto px-4 py-6">
+            <p class="text-center text-gray-600">&copy; <span id="current-year"></span> Kalkomey Enterprises</p>
+        </div>
+    </footer>
+
+    <script>
+        // Update year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+
