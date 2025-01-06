@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Development Workflow Standards - Kalkomey Engineering">
+    <title>Development Workflow - Kalkomey</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../../assets/images/favicon.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kalkomey-blue': '#005596',
+                        'kalkomey-orange': '#FF6B00'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Prism.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        pre {
+            position: relative;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            background-color: #1e293b; /* Matches Prism Tomorrow's dark background */
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: #333;
+            color: white;
+            font-size: 0.75rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background-color: #444;
+        }
+
+        .foldable-content {
+            display: none;
+        }
+
+        .foldable-content.active {
+            display: block;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center">
+                        <i class="fas fa-arrow-left text-xl text-kalkomey-blue"></i>
+                        <span class="ml-2 text-xl font-semibold text-kalkomey-blue">Back to Standards</span>
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <a href="#table-of-contents" class="text-gray-600 hover:text-kalkomey-orange">
+                        <i class="fas fa-list mr-2"></i>
+                        Contents
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h1 class="text-3xl font-bold text-gray-900">Development Workflow</h1>
+            <p class="mt-2 text-gray-600">Standards and best practices for efficient development workflows at Kalkomey.</p>
+        </div>
+
+        <!-- Table of Contents -->
+        <div id="table-of-contents" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Contents</h2>
+            <nav class="space-y-2">
+                <button onclick="toggleSection('trunk-based-development')" class="block text-gray-600 hover:text-kalkomey-orange">
+                    1. Trunk-Based Development
+                </button>
+                <button onclick="toggleSection('git-commit-messages')" class="block text-gray-600 hover:text-kalkomey-orange">
+                    2. Git Commit Messages
+                </button>
+                <button onclick="toggleSection('clickup-integration')" class="block text-gray-600 hover:text-kalkomey-orange">
+                    3. ClickUp Integration
+                </button>
+                <button onclick="toggleSection('ci-cd-practices')" class="block text-gray-600 hover:text-kalkomey-orange">
+                    4. CI/CD Practices
+                </button>
+            </nav>
+        </div>
+
+        <!-- Trunk-Based Development -->
+        <section id="trunk-based-development" class="bg-white rounded-lg shadow-sm p-6 mb-6 foldable-content">
+            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Trunk-Based Development</h2>
+            <p class="text-gray-600">We follow a Trunk-Based Development model with the default branch set to <code>master</code>. Key practices include:</p>
+            <ul class="space-y-2 text-gray-600 mt-4">
+                <li class="flex items-center">
+                    <i class="fas fa-check text-green-500 mr-2"></i> Commit frequently to <code>master</code>.
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-check text-green-500 mr-2"></i> Use feature flags for incomplete features.
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-check text-green-500 mr-2"></i> Avoid long-lived branches.
+                </li>
+            </ul>
+        </section>
+
+        <!-- Git Commit Messages -->
+        <section id="git-commit-messages" class="bg-white rounded-lg shadow-sm p-6 mb-6 foldable-content">
+            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Git Commit Messages</h2>
+            <p class="text-gray-600">We adhere to the <a href="https://cbea.ms/git-commit/" class="text-kalkomey-blue hover:text-kalkomey-orange underline" target="_blank">Git Commit Message Guidelines</a>. A well-structured commit message includes:</p>
+            <pre><code class="language-text">Short summary (50 characters or less)
+
+Detailed explanation of what the commit does, why it's necessary,
+and any relevant context or background.
+</code><button class="copy-btn">Copy</button></pre>
+            <p class="mt-4 text-gray-600">Use imperative mood and keep the summary concise.</p>
+        </section>
+
+        <!-- ClickUp Integration -->
+        <section id="clickup-integration" class="bg-white rounded-lg shadow-sm p-6 mb-6 foldable-content">
+            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">ClickUp Integration</h2>
+            <ul class="space-y-2 text-gray-600">
+                <li class="flex items-center">
+                    <i class="fas fa-check text-green-500 mr-2"></i> Link ClickUp tasks to branches using task IDs.
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-check text-green-500 mr-2"></i> Update task statuses in ClickUp as progress is made.
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-check text-green-500 mr-2"></i> Use ClickUp comments for code review discussions.
+                </li>
+            </ul>
+        </section>
+
+        <!-- CI/CD Practices -->
+        <section id="ci-cd-practices" class="bg-white rounded-lg shadow-sm p-6 mb-6 foldable-content">
+            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">CI/CD Practices</h2>
+            <ul class="space-y-2 text-gray-600">
+                <li class="flex items-center">
+                    <i class="fas fa-check text-green-500 mr-2"></i> Use automated pipelines for builds, tests, and deployments.
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-check text-green-500 mr-2"></i> Enforce test coverage thresholds before merging.
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-check text-green-500 mr-2"></i> Use staging environments to verify changes before production.
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white rounded-lg shadow-sm p-6">
+        <p class="text-gray-600 text-center">© 2024 Kalkomey Enterprises, LLC. All rights reserved.</p>
+    </footer>
+
+    <!-- Prism.js for code highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        // Toggle folding sections
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.toggle('active');
+        }
+
+        // Add copy-to-clipboard functionality
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const codeBlock = button.previousElementSibling;
+                navigator.clipboard.writeText(codeBlock.textContent.trim());
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
+

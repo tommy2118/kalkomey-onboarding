@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="macOS Development Environment Setup - Kalkomey Engineering">
+    <title>macOS Development Environment Setup - Kalkomey</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../assets/images/favicon.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kalkomey-blue': '#005596',
+                        'kalkomey-orange': '#FF6B00'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <a href="index.html" class="flex items-center">
+                    <i class="fas fa-arrow-left text-xl text-kalkomey-blue"></i>
+                    <span class="ml-2 text-xl font-semibold text-kalkomey-blue">Back to Setup Index</span>
+                </a>
+                <h1 class="text-xl font-bold text-kalkomey-blue">macOS Setup</h1>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Introduction -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Welcome to macOS Setup</h2>
+            <p class="text-gray-600">Follow these steps to set up your macOS computer for software development at Kalkomey. These instructions are designed for both Intel and Apple Silicon machines.</p>
+        </div>
+
+        <!-- Step 1: Install iTerm2 -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">1. Install iTerm2</h3>
+            <p class="text-gray-600 mb-3">iTerm2 is a terminal emulator that provides advanced features compared to the default Terminal app.</p>
+            <ol class="list-decimal ml-6 space-y-2 text-gray-600">
+                <li>Visit the <a href="https://www.iterm2.com/" target="_blank" class="text-kalkomey-blue hover:text-kalkomey-orange">iTerm2 website</a> and download the latest version.</li>
+                <li>Open the downloaded zip file and drag the iTerm app into your Applications folder.</li>
+                <li>Launch iTerm2 from your Applications folder or via Spotlight.</li>
+            </ol>
+        </section>
+
+        <!-- Step 2: Accept Xcode License Agreement -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">2. Accept Xcode License Agreement</h3>
+            <p class="text-gray-600 mb-3">Xcode is required for development tools. You must accept its license agreement:</p>
+            <pre class="bg-gray-100 p-4 rounded-lg text-sm text-gray-800 overflow-x-auto">
+sudo xcodebuild -license accept
+            </pre>
+            <p class="text-gray-600">You may be prompted to enter your password. Once accepted, proceed with the next step.</p>
+        </section>
+
+        <!-- Step 3: Install Homebrew -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">3. Install Homebrew</h3>
+            <p class="text-gray-600 mb-3">Homebrew is a package manager that simplifies software installation on macOS.</p>
+            <ol class="list-decimal ml-6 space-y-2 text-gray-600">
+                <li>Open iTerm2.</li>
+                <li>Run the following command to install Homebrew:
+                    <pre class="bg-gray-100 p-4 rounded-lg text-sm text-gray-800 overflow-x-auto">
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+                    </pre>
+                </li>
+                <li>Follow the on-screen instructions to complete the installation.</li>
+            </ol>
+        </section>
+
+        <!-- Step 4: Install Git -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">4. Install Git</h3>
+            <p class="text-gray-600 mb-3">Git is a version control system used for managing source code.</p>
+            <ol class="list-decimal ml-6 space-y-2 text-gray-600">
+                <li>Open iTerm2.</li>
+                <li>Run the following commands to update Homebrew and install Git:
+                    <pre class="bg-gray-100 p-4 rounded-lg text-sm text-gray-800 overflow-x-auto">
+brew update && brew install git
+                    </pre>
+                </li>
+                <li>Verify the installation by running:
+                    <pre class="bg-gray-100 p-4 rounded-lg text-sm text-gray-800 overflow-x-auto">
+git --version
+                    </pre>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Step 5: Install Docker Desktop -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">5. Install Docker Desktop</h3>
+            <p class="text-gray-600 mb-3">Docker Desktop is used for containerized development environments.</p>
+            <ol class="list-decimal ml-6 space-y-2 text-gray-600">
+                <li>Visit the <a href="https://www.docker.com/products/docker-desktop" target="_blank" class="text-kalkomey-blue hover:text-kalkomey-orange">Docker Desktop website</a> and download the appropriate version for your machine (Intel or Apple Silicon).</li>
+                <li>Open the downloaded .dmg file and drag the Docker app into your Applications folder.</li>
+                <li>Launch Docker Desktop and follow the on-screen instructions to complete the installation.</li>
+                <li>Configure Docker:
+                    <ul class="list-disc ml-6 mt-3 text-gray-600">
+                        <li>Open Docker Desktop Preferences.</li>
+                        <li>Under "File Sharing Implementation for Containers," select <strong>VirtioFS</strong>.</li>
+                        <li>If you are on Apple Silicon, check the "Use Rosetta for x86/amd64 emulation" option.</li>
+                        <li>Click <strong>Apply & Restart</strong>.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Step 6: Set Up Directories -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">6. Set Up Directories</h3>
+            <p class="text-gray-600 mb-3">Organize your projects with the following directories:</p>
+            <pre class="bg-gray-100 p-4 rounded-lg text-sm text-gray-800 overflow-x-auto">
+mkdir -p ~/src/ke
+            </pre>
+        </section>
+
+        <!-- Step 7: Install and Set Up Dotfiles -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">7. Install and Set Up Dotfiles</h3>
+            <p class="text-gray-600 mb-3">Kalkomey provides a set of dotfiles to configure your development environment.</p>
+            <ol class="list-decimal ml-6 space-y-2 text-gray-600">
+                <li>Clone the dotfiles repository:
+                    <pre class="bg-gray-100 p-4 rounded-lg text-sm text-gray-800 overflow-x-auto">
+git clone https://github.com/kalkomey/dotfiles.git ~/.dotfiles
+                    </pre>
+                </li>
+                <li>Run the bootstrap script:
+                    <pre class="bg-gray-100 p-4 rounded-lg text-sm text-gray-800 overflow-x-auto">
+cd ~/.dotfiles
+script/bootstrap
+                    </pre>
+                </li>
+                <li>Run the install script:
+                    <pre class="bg-gray-100 p-4 rounded-lg text-sm text-gray-800 overflow-x-auto">
+script/install
+                    </pre>
+                </li>
+            </ol>
+            <p class="text-gray-600">Your environment is now configured with Kalkomey's dotfiles.</p>
+        </section>
+    </main>
+
+    <footer class="bg-white mt-12">
+        <div class="container mx-auto px-4 py-6">
+            <p class="text-center text-gray-600">&copy; <span id="current-year"></span> Kalkomey Enterprises</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+

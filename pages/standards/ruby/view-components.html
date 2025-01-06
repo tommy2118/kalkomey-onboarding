@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ViewComponents Best Practices - Kalkomey Engineering">
+    <title>ViewComponents Best Practices - Kalkomey</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../../assets/images/favicon.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kalkomey-blue': '#005596',
+                        'kalkomey-orange': '#FF6B00'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Prism.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        pre {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.25rem;
+            color: white;
+            font-size: 0.875rem;
+            opacity: 0;
+            transition: opacity 0.2s, background-color 0.2s;
+        }
+
+        pre:hover .copy-btn {
+            opacity: 1;
+        }
+
+        .copy-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 5rem;
+        }
+
+        .toc-link {
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .toc-link::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: transparent;
+            transition: background-color 0.2s;
+        }
+
+        .toc-link.active::before {
+            background-color: #FF6B00;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-arrow-left text-xl text-kalkomey-blue"></i>
+                        <span class="ml-2 text-xl font-semibold text-kalkomey-blue">Back to Standards</span>
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <a href="#table-of-contents" class="text-gray-600 hover:text-kalkomey-orange">
+                        <i class="fas fa-list mr-2"></i>
+                        Contents
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sidebar -->
+            <aside class="lg:w-64 flex-shrink-0">
+                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-24">
+                    <h2 class="text-xl font-semibold text-kalkomey-blue mb-4" id="table-of-contents">Contents</h2>
+                    <nav class="space-y-2">
+                        <a href="#component-structure" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Component Structure</a>
+                        <a href="#design-patterns" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Design Patterns</a>
+                        <a href="#testing-viewcomponents" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Testing ViewComponents</a>
+                        <a href="#component-previews" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Component Previews</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Content -->
+            <main class="lg:flex-1">
+                <!-- Header -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h1 class="text-3xl font-bold text-gray-900">ViewComponents Best Practices</h1>
+                    <p class="mt-2 text-gray-600">Guidelines for building reusable, tested, and maintainable UI components using ViewComponents in Rails.</p>
+                </div>
+
+                <!-- Component Structure -->
+                <section id="component-structure" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Component Structure</h2>
+                    <p class="text-gray-600">Keep components small, focused, and reusable. Structure components logically and consistently:</p>
+                    <ul class="space-y-2 text-gray-600 mt-4">
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Define the component class in <code>app/components</code>.
+                        </li>
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Place the corresponding template in <code>app/components/[component_name].html.erb</code>.
+                        </li>
+                    </ul>
+                    <pre><code class="language-ruby"># app/components/button_component.rb
+class ButtonComponent < ViewComponent::Base
+  def initialize(label:, variant: :primary)
+    @label = label
+    @variant = variant
+  end
+
+  def button_classes
+    "btn btn-#{variant}"
+  end
+
+  private
+
+  attr_reader :label, :variant
+end</code></pre>
+                    <pre><code class="language-html"><!-- app/components/button_component.html.erb -->
+<button class="<%= button_classes %>">
+  <%= label %>
+</button></code></pre>
+                </section>
+
+                <!-- Design Patterns -->
+                <section id="design-patterns" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Design Patterns</h2>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Prefer composition over inheritance. Build small, composable components.
+                        </li>
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Use slots for flexible layouts and reusable sections.
+                        </li>
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Use helper methods for encapsulated business logic.
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Testing ViewComponents -->
+                <section id="testing-viewcomponents" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Testing ViewComponents</h2>
+                    <p class="text-gray-600">Use RSpec and ViewComponent test helpers to ensure reliability and avoid regressions.</p>
+                    <pre><code class="language-ruby"># Example ViewComponent Test
+require "rails_helper"
+
+RSpec.describe ButtonComponent, type: :component do
+  it "renders the button with the correct label and style" do
+    render_inline(ButtonComponent.new(label: "Submit", variant: :success))
+
+    expect(rendered_component).to have_css("button.btn.btn-success", text: "Submit")
+  end
+end</code></pre>
+                </section>
+
+                <!-- Component Previews -->
+                <section id="component-previews" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Component Previews</h2>
+                    <p class="text-gray-600">Leverage <code>ViewComponent::Preview</code> for live previews of components in development.</p>
+                    <pre><code class="language-ruby"># app/components/previews/button_component_preview.rb
+class ButtonComponentPreview < ViewComponent::Preview
+  def default
+    render(ButtonComponent.new(label: "Default", variant: :primary))
+  end
+
+  def success_button
+    render(ButtonComponent.new(label: "Success", variant: :success))
+  end
+end</code></pre>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white rounded-lg shadow-sm p-6 mt-8">
+        <p class="text-gray-600 text-center">&copy; <span id="current-year"></span> Kalkomey Enterprises, LLC. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Copy button functionality
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const code = button.parentElement.querySelector('code');
+                navigator.clipboard.writeText(code.textContent);
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
+

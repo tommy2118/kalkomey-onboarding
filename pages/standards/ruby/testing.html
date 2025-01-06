@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Testing Best Practices - Kalkomey Engineering">
+    <title>Testing Best Practices - Kalkomey</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../../assets/images/favicon.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kalkomey-blue': '#005596',
+                        'kalkomey-orange': '#FF6B00'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Prism.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        pre {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.25rem;
+            color: white;
+            font-size: 0.875rem;
+            opacity: 0;
+            transition: opacity 0.2s, background-color 0.2s;
+        }
+
+        pre:hover .copy-btn {
+            opacity: 1;
+        }
+
+        .copy-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 5rem;
+        }
+
+        .toc-link {
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .toc-link::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: transparent;
+            transition: background-color 0.2s;
+        }
+
+        .toc-link.active::before {
+            background-color: #FF6B00;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-arrow-left text-xl text-kalkomey-blue"></i>
+                        <span class="ml-2 text-xl font-semibold text-kalkomey-blue">Back to Standards</span>
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <a href="#table-of-contents" class="text-gray-600 hover:text-kalkomey-orange">
+                        <i class="fas fa-list mr-2"></i>
+                        Contents
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sidebar -->
+            <aside class="lg:w-64 flex-shrink-0">
+                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-24">
+                    <h2 class="text-xl font-semibold text-kalkomey-blue mb-4" id="table-of-contents">Contents</h2>
+                    <nav class="space-y-2">
+                        <a href="#unit-tests" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Unit Tests</a>
+                        <a href="#integration-tests" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Integration Tests</a>
+                        <a href="#system-tests" class="toc-link block text-gray-600 hover:text-kalkomey-orange">System Tests</a>
+                        <a href="#testing-tools" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Testing Tools</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Content -->
+            <main class="lg:flex-1">
+                <!-- Header -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h1 class="text-3xl font-bold text-gray-900">Testing Best Practices</h1>
+                    <p class="mt-2 text-gray-600">Guidelines and examples for writing effective tests in Rails using RSpec, FactoryBot, and Capybara.</p>
+                </div>
+
+                <!-- Unit Tests -->
+                <section id="unit-tests" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Unit Tests</h2>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Focus on testing individual model methods and validations.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Use FactoryBot for creating test data.</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4">
+                        <pre><code class="language-ruby"># Example Unit Test
+RSpec.describe User, type: :model do
+  it { should validate_presence_of(:email) }
+  it { should validate_uniqueness_of(:email) }
+
+  describe '#full_name' do
+    it 'returns the first and last name concatenated' do
+      user = build(:user, first_name: 'John', last_name: 'Doe')
+      expect(user.full_name).to eq('John Doe')
+    end
+  end
+end</code></pre>
+                    </div>
+                </section>
+
+                <!-- Integration Tests -->
+                <section id="integration-tests" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Integration Tests</h2>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Test interactions between models, controllers, and views.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Verify the expected flow of data and user actions.</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4">
+                        <pre><code class="language-ruby"># Example Integration Test
+RSpec.describe 'User management', type: :request do
+  describe 'POST /users' do
+    it 'creates a new user' do
+      expect {
+        post users_path, params: { user: { email: 'test@example.com', password: 'password123' } }
+      }.to change(User, :count).by(1)
+    end
+  end
+end</code></pre>
+                    </div>
+                </section>
+
+                <!-- System Tests -->
+                <section id="system-tests" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">System Tests</h2>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Use Capybara to simulate user interactions with the UI.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Test critical workflows end-to-end.</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4">
+                        <pre><code class="language-ruby"># Example System Test
+RSpec.describe 'User login', type: :system do
+  it 'allows a user to log in' do
+    user = create(:user, email: 'test@example.com', password: 'password123')
+
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log in'
+
+    expect(page).to have_content('Signed in successfully.')
+  end
+end</code></pre>
+                    </div>
+                </section>
+
+                <!-- Testing Tools -->
+                <section id="testing-tools" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Testing Tools</h2>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Use <code>RSpec</code> for expressive test cases.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Use <code>FactoryBot</code> for efficient test data generation.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span>Use <code>Capybara</code> for simulating user interactions.</span>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white rounded-lg shadow-sm p-6 mt-8">
+        <p class="text-gray-600 text-center">&copy; <span id="current-year"></span> Kalkomey Enterprises, LLC. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Copy button functionality
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const code = button.parentElement.querySelector('code');
+                navigator.clipboard.writeText(code.textContent);
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
+

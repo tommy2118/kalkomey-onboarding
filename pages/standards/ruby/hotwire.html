@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hotwire Stack Best Practices - Kalkomey Engineering">
+    <title>Hotwire Stack Best Practices - Kalkomey</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../../assets/images/favicon.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kalkomey-blue': '#005596',
+                        'kalkomey-orange': '#FF6B00'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Prism.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        pre {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.25rem;
+            color: white;
+            font-size: 0.875rem;
+            opacity: 0;
+            transition: opacity 0.2s, background-color 0.2s;
+        }
+
+        pre:hover .copy-btn {
+            opacity: 1;
+        }
+
+        .copy-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 5rem;
+        }
+
+        .toc-link {
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .toc-link::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: transparent;
+            transition: background-color 0.2s;
+        }
+
+        .toc-link.active::before {
+            background-color: #FF6B00;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-arrow-left text-xl text-kalkomey-blue"></i>
+                        <span class="ml-2 text-xl font-semibold text-kalkomey-blue">Back to Standards</span>
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <a href="#table-of-contents" class="text-gray-600 hover:text-kalkomey-orange">
+                        <i class="fas fa-list mr-2"></i>
+                        Contents
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sidebar -->
+            <aside class="lg:w-64 flex-shrink-0">
+                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-24">
+                    <h2 class="text-xl font-semibold text-kalkomey-blue mb-4" id="table-of-contents">Contents</h2>
+                    <nav class="space-y-2">
+                        <a href="#turbo-overview" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Turbo Overview</a>
+                        <a href="#stimulus-overview" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Stimulus Overview</a>
+                        <a href="#turbo-streams" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Turbo Streams</a>
+                        <a href="#best-practices" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Best Practices</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Content -->
+            <main class="lg:flex-1">
+                <!-- Header -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h1 class="text-3xl font-bold text-gray-900">Hotwire Stack Best Practices</h1>
+                    <p class="mt-2 text-gray-600">Use Hotwire to build modern, reactive web applications with minimal JavaScript.</p>
+                </div>
+
+                <!-- Turbo Overview -->
+                <section id="turbo-overview" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Turbo Overview</h2>
+                    <p class="text-gray-600">Turbo makes web applications faster by reducing the need for full-page reloads.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Turbo Drive: Automatically makes links and forms work without a page reload.
+                        </li>
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Turbo Frames: Update specific parts of the page dynamically.
+                        </li>
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Turbo Streams: Real-time updates over WebSockets.
+                        </li>
+                    </ul>
+                    <pre><code class="language-html"><!-- Turbo Frame Example -->
+<turbo-frame id="comments">
+  <%= render @comments %>
+</turbo-frame></code></pre>
+                </section>
+
+                <!-- Stimulus Overview -->
+                <section id="stimulus-overview" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Stimulus Overview</h2>
+                    <p class="text-gray-600">Stimulus is a modest JavaScript framework for adding interactivity to HTML.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Add controllers with data attributes in your HTML.
+                        </li>
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Easily manage events and actions.
+                        </li>
+                    </ul>
+                    <pre><code class="language-javascript">// app/javascript/controllers/hello_controller.js
+import { Controller } from "@hotwired/stimulus";
+
+export default class extends Controller {
+  connect() {
+    console.log("Hello, Stimulus!");
+  }
+}</code></pre>
+                </section>
+
+                <!-- Turbo Streams -->
+                <section id="turbo-streams" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Turbo Streams</h2>
+                    <p class="text-gray-600">Use Turbo Streams for real-time updates without refreshing the page.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Broadcast updates from the server using Turbo Streams.
+                        </li>
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Update specific parts of the page dynamically.
+                        </li>
+                    </ul>
+                    <pre><code class="language-html"><!-- Turbo Stream Example -->
+<%= turbo_stream_from "comments" %>
+<%= turbo_stream.replace "comment_list" do %>
+  <%= render @comments %>
+<% end %></code></pre>
+                </section>
+
+                <!-- Best Practices -->
+                <section id="best-practices" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Best Practices</h2>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Keep Turbo Frames small and focused on specific tasks.
+                        </li>
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Use Stimulus to handle complex JavaScript interactions.
+                        </li>
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Leverage Turbo Streams for real-time updates.
+                        </li>
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Test your components to ensure reliability and performance.
+                        </li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white rounded-lg shadow-sm p-6 mt-8">
+        <p class="text-gray-600 text-center">&copy; <span id="current-year"></span> Kalkomey Enterprises, LLC. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Copy button functionality
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const code = button.parentElement.querySelector('code');
+                navigator.clipboard.writeText(code.textContent);
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -47,19 +47,10 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <a href="/" class="flex items-center">
+                    <a href="../../index.html" class="flex items-center">
                         <img src="../../assets/images/logo.webp" alt="Kalkomey Logo" class="h-8">
-                        <span class="ml-2 text-xl font-semibold text-kalkomey-blue">Standards</span>
+                        <span class="ml-2 text-xl font-semibold text-kalkomey-blue">Back to Onboarding</span>
                     </a>
-                </div>
-                <div class="flex items-center">
-                    <div class="relative">
-                        <input type="text"
-                               id="search-standards"
-                               placeholder="Search standards..."
-                               class="w-64 px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-kalkomey-blue">
-                        <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
-                    </div>
                 </div>
             </div>
         </div>
@@ -190,38 +181,6 @@
     <script>
         // Update year in footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Search functionality
-        const searchInput = document.getElementById('search-standards');
-        searchInput.addEventListener('input', handleSearch);
-
-        function handleSearch(event) {
-            const searchTerm = event.target.value.toLowerCase();
-            const cards = document.querySelectorAll('#standards-grid > div');
-
-            cards.forEach(card => {
-                const content = card.textContent.toLowerCase();
-                if (content.includes(searchTerm)) {
-                    card.classList.remove('hidden');
-                    card.classList.add('block');
-                    highlightText(card, searchTerm);
-                } else {
-                    card.classList.add('hidden');
-                    card.classList.remove('block');
-                }
-            });
-        }
-
-        function highlightText(element, searchTerm) {
-            const regex = new RegExp(`(${searchTerm})`, 'gi');
-            element.querySelectorAll('.search-highlight').forEach(span => {
-                span.outerHTML = span.textContent; // Remove existing highlights
-            });
-
-            element.innerHTML = element.innerHTML.replace(regex, match =>
-                `<span class="search-highlight">${match}</span>`
-            );
-        }
 
         // Category filtering
         function filterCards(category) {

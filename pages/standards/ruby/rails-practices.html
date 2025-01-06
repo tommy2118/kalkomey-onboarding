@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rails Best Practices - Kalkomey Engineering">
+    <title>Rails Best Practices - Kalkomey</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../../assets/images/favicon.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kalkomey-blue': '#005596',
+                        'kalkomey-orange': '#FF6B00'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Prism.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        pre {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.25rem;
+            color: white;
+            font-size: 0.875rem;
+            opacity: 0;
+            transition: opacity 0.2s, background-color 0.2s;
+        }
+
+        pre:hover .copy-btn {
+            opacity: 1;
+        }
+
+        .copy-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 5rem;
+        }
+
+        .toc-link {
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .toc-link::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: transparent;
+            transition: background-color 0.2s;
+        }
+
+        .toc-link.active::before {
+            background-color: #FF6B00;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-arrow-left text-xl text-kalkomey-blue"></i>
+                        <span class="ml-2 text-xl font-semibold text-kalkomey-blue">Back to Standards</span>
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <a href="#table-of-contents" class="text-gray-600 hover:text-kalkomey-orange">
+                        <i class="fas fa-list mr-2"></i>
+                        Contents
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sidebar -->
+            <aside class="lg:w-64 flex-shrink-0">
+                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-24">
+                    <h2 class="text-xl font-semibold text-kalkomey-blue mb-4" id="table-of-contents">Contents</h2>
+                    <nav class="space-y-2">
+                        <a href="#models" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Models</a>
+                        <a href="#controllers" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Controllers</a>
+                        <a href="#views" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Views</a>
+                        <a href="#routes" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Routes</a>
+                        <a href="#migrations" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Migrations</a>
+                        <a href="#testing" class="toc-link block text-gray-600 hover:text-kalkomey-orange">Testing</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Content -->
+            <main class="lg:flex-1">
+                <!-- Header -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h1 class="text-3xl font-bold text-gray-900">Rails Best Practices</h1>
+                    <p class="mt-2 text-gray-600">Comprehensive guide to Rails best practices for clean, maintainable code.</p>
+                </div>
+
+                <!-- Models -->
+                <section id="models" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Models</h2>
+                    <div class="space-y-6">
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Keep models skinny. Business logic belongs in service objects.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Use scopes for common queries.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Validate data integrity with model validations.</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <pre><code class="language-ruby"># Example Scope
+class User < ApplicationRecord
+  scope :active, -> { where(status: 'active') }
+
+  validates :email, presence: true, uniqueness: true
+end</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Controllers -->
+                <section id="controllers" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Controllers</h2>
+                    <div class="space-y-6">
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Keep controllers skinny. Delegate complex logic to service objects or helpers.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Use strong parameters for mass assignment protection.</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <pre><code class="language-ruby"># Example Controller
+class UsersController < ApplicationController
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      redirect_to @user, notice: 'User was successfully created.'
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:email, :password, :name)
+  end
+end</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Views -->
+                <section id="views" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Views</h2>
+                    <div class="space-y-6">
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Keep views simple. Avoid embedding logic in views.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Use partials for reusable components.</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <pre><code class="language-html"># Example Partial (_user.html.erb)
+<div class="user">
+  <h3><%= user.name %></h3>
+  <p><%= user.email %></p>
+</div></code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Routes -->
+                <section id="routes" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Routes</h2>
+                    <div class="space-y-6">
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Use RESTful routes for resourceful controllers.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Group related routes with `namespace` and `scope`.</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <pre><code class="language-ruby"># Example Routes
+Rails.application.routes.draw do
+  resources :users
+  namespace :admin do
+    resources :reports
+  end
+end</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Migrations -->
+                <section id="migrations" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Migrations</h2>
+                    <div class="space-y-6">
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Use descriptive names for migrations.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Always include `up` and `down` methods for reversible migrations.</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <pre><code class="language-ruby"># Example Migration
+class CreateUsers < ActiveRecord::Migration[6.1]
+  def change
+    create_table :users do |t|
+      t.string :email, null: false
+      t.string :name
+      t.timestamps
+    end
+  end
+end</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Testing -->
+                <section id="testing" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Testing</h2>
+                    <div class="space-y-6">
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Write unit tests for models and service objects.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Write system tests for controllers and views.</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <pre><code class="language-ruby"># Example RSpec Test
+RSpec.describe User, type: :model do
+  it { should validate_presence_of(:email) }
+end</code></pre>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white rounded-lg shadow-sm p-6 mt-8">
+        <p class="text-gray-600 text-center">&copy; <span id="current-year"></span> Kalkomey Enterprises, LLC. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+

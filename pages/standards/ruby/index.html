@@ -24,33 +24,8 @@
         }
     </script>
 
-    <!-- Prism.js for code highlighting -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        /* Custom styles for code blocks */
-        pre {
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
@@ -58,15 +33,9 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <a href="../" class="flex items-center">
+                    <a href="../index.html" class="flex items-center">
                         <i class="fas fa-arrow-left text-xl text-kalkomey-blue"></i>
                         <span class="ml-2 text-xl font-semibold text-kalkomey-blue">Back to Standards</span>
-                    </a>
-                </div>
-                <div class="flex items-center">
-                    <a href="#table-of-contents" class="text-gray-600 hover:text-kalkomey-orange">
-                        <i class="fas fa-list mr-2"></i>
-                        Contents
                     </a>
                 </div>
             </div>
@@ -78,290 +47,137 @@
         <!-- Header -->
         <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
             <h1 class="text-3xl font-bold text-gray-900">Ruby Development Standards</h1>
-            <p class="mt-2 text-gray-600">Best practices for Ruby and Ruby on Rails development at Kalkomey.</p>
+            <p class="mt-2 text-gray-600">Best practices and guidelines for Ruby development at Kalkomey.</p>
         </div>
 
-        <!-- Table of Contents -->
-        <div id="table-of-contents" class="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Contents</h2>
-            <nav class="space-y-2">
-                <a href="#guides" class="block text-gray-600 hover:text-kalkomey-orange">1. Guides and Tools</a>
-                <a href="#ruby-style" class="block text-gray-600 hover:text-kalkomey-orange">2. Ruby Style Guidelines</a>
-                <a href="#rails-practices" class="block text-gray-600 hover:text-kalkomey-orange">3. Rails Best Practices</a>
-                <a href="#testing" class="block text-gray-600 hover:text-kalkomey-orange">4. Testing Standards</a>
-                <a href="#view-components" class="block text-gray-600 hover:text-kalkomey-orange">5. ViewComponents</a>
-                <a href="#hotwire" class="block text-gray-600 hover:text-kalkomey-orange">6. Hotwire Stack</a>
-                <a href="#tailwind" class="block text-gray-600 hover:text-kalkomey-orange">7. TailwindCSS</a>
-            </nav>
+        <!-- Standards Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Ruby Style -->
+            <a href="ruby-style.html" class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center text-kalkomey-blue mb-4">
+                    <i class="fas fa-gem text-2xl mr-3"></i>
+                    <h2 class="text-xl font-semibold">Ruby Style Guide</h2>
+                </div>
+                <p class="text-gray-600 mb-4">Code formatting, naming conventions, and Ruby-specific best practices.</p>
+                <span class="text-kalkomey-orange hover:text-kalkomey-blue transition-colors">Learn more →</span>
+            </a>
+
+            <!-- Rails Practices -->
+            <a href="rails-practices.html" class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center text-kalkomey-blue mb-4">
+                    <i class="fas fa-train text-2xl mr-3"></i>
+                    <h2 class="text-xl font-semibold">Rails Best Practices</h2>
+                </div>
+                <p class="text-gray-600 mb-4">Architecture patterns, ActiveRecord usage, and Rails conventions.</p>
+                <span class="text-kalkomey-orange hover:text-kalkomey-blue transition-colors">Learn more →</span>
+            </a>
+
+            <!-- Testing -->
+            <a href="testing.html" class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center text-kalkomey-blue mb-4">
+                    <i class="fas fa-vial text-2xl mr-3"></i>
+                    <h2 class="text-xl font-semibold">Testing Standards</h2>
+                </div>
+                <p class="text-gray-600 mb-4">Test organization, coverage requirements, and testing best practices.</p>
+                <span class="text-kalkomey-orange hover:text-kalkomey-blue transition-colors">Learn more →</span>
+            </a>
+
+            <!-- ViewComponents -->
+            <a href="view-components.html" class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center text-kalkomey-blue mb-4">
+                    <i class="fas fa-puzzle-piece text-2xl mr-3"></i>
+                    <h2 class="text-xl font-semibold">ViewComponents</h2>
+                </div>
+                <p class="text-gray-600 mb-4">Component architecture, patterns, and implementation guidelines.</p>
+                <span class="text-kalkomey-orange hover:text-kalkomey-blue transition-colors">Learn more →</span>
+            </a>
+
+            <!-- Hotwire -->
+            <a href="hotwire.html" class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center text-kalkomey-blue mb-4">
+                    <i class="fas fa-bolt text-2xl mr-3"></i>
+                    <h2 class="text-xl font-semibold">Hotwire Stack</h2>
+                </div>
+                <p class="text-gray-600 mb-4">Turbo, Stimulus, and real-time updates implementation guide.</p>
+                <span class="text-kalkomey-orange hover:text-kalkomey-blue transition-colors">Learn more →</span>
+            </a>
+
+            <!-- Frontend -->
+            <a href="frontend.html" class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center text-kalkomey-blue mb-4">
+                    <i class="fas fa-paint-brush text-2xl mr-3"></i>
+                    <h2 class="text-xl font-semibold">Frontend Standards</h2>
+                </div>
+                <p class="text-gray-600 mb-4">TailwindCSS usage, JavaScript patterns, and frontend best practices.</p>
+                <span class="text-kalkomey-orange hover:text-kalkomey-blue transition-colors">Learn more →</span>
+            </a>
         </div>
 
-        <!-- Guides and Tools -->
-        <section id="guides" class="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Guides and Tools</h2>
-            <ul class="space-y-4 text-gray-600">
-                <li>
-                    <i class="fas fa-book text-kalkomey-orange mr-2"></i>
-                    <a href="https://rubystyle.guide" class="text-kalkomey-blue hover:text-kalkomey-orange underline" target="_blank" rel="noopener">Ruby Style Guide</a>
-                    <p class="mt-1 ml-6">Our primary reference for Ruby code style and conventions.</p>
-                </li>
-                <li>
-                    <i class="fas fa-book text-kalkomey-orange mr-2"></i>
-                    <a href="https://guides.rubyonrails.org" class="text-kalkomey-blue hover:text-kalkomey-orange underline" target="_blank" rel="noopener">Rails Guides</a>
-                    <p class="mt-1 ml-6">Official Rails documentation for framework conventions and patterns.</p>
-                </li>
-                <li>
-                    <i class="fas fa-check-circle text-kalkomey-orange mr-2"></i>
-                    <a href="https://docs.rubocop.org" class="text-kalkomey-blue hover:text-kalkomey-orange underline" target="_blank" rel="noopener">RuboCop</a>
-                    <p class="mt-1 ml-6">Static code analysis and style enforcement.</p>
-                </li>
-            </ul>
-        </section>
-
-        <!-- Ruby Style Guidelines -->
-        <section id="ruby-style" class="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Ruby Style Guidelines</h2>
-
-            <div class="space-y-4">
+        <!-- Quick Reference -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mt-6">
+            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Quick Reference</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div>
-                    <h3 class="text-xl font-semibold text-gray-800">Formatting</h3>
-                    <ul class="mt-2 space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Use 2 spaces for indentation</span>
+                    <h3 class="font-semibold text-gray-800 mb-2">Key Tools</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>
+                            <a href="https://rubocop.org" class="hover:text-kalkomey-orange">RuboCop</a>
+                            - Style enforcement
                         </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Keep lines under 120 characters</span>
+                        <li>
+                            <a href="https://rspec.info" class="hover:text-kalkomey-orange">RSpec</a>
+                            - Testing framework
                         </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Use spaces around operators</span>
+                        <li>
+                            <a href="https://brakeman.org" class="hover:text-kalkomey-orange">Brakeman</a>
+                            - Security analysis
                         </li>
                     </ul>
                 </div>
 
                 <div>
-                    <h3 class="text-xl font-semibold text-gray-800">Naming</h3>
-                    <ul class="mt-2 space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Use snake_case for methods and variables</span>
+                    <h3 class="font-semibold text-gray-800 mb-2">Documentation</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>
+                            <a href="https://api.rubyonrails.org" class="hover:text-kalkomey-orange">Rails API</a>
                         </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Use CamelCase for classes and modules</span>
+                        <li>
+                            <a href="https://ruby-doc.org" class="hover:text-kalkomey-orange">Ruby Docs</a>
                         </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Prefix boolean methods with question mark</span>
+                        <li>
+                            <a href="https://guides.rubyonrails.org" class="hover:text-kalkomey-orange">Rails Guides</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-2">Additional Resources</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>
+                            <a href="https://github.com/kalkomey/engineering-wiki" class="hover:text-kalkomey-orange">Engineering Wiki</a>
+                        </li>
+                        <li>
+                            <a href="/playbook" class="hover:text-kalkomey-orange">Development Playbook</a>
+                        </li>
+                        <li>
+                            <a href="/onboarding" class="hover:text-kalkomey-orange">Onboarding Guide</a>
                         </li>
                     </ul>
                 </div>
             </div>
-        </section>
-
-        <!-- Rails Best Practices -->
-        <section id="rails-practices" class="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Rails Best Practices</h2>
-
-            <div class="space-y-6">
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-800">Controllers</h3>
-                    <ul class="mt-2 space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Keep controllers skinny, move logic to service objects</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Use strong parameters for mass assignment</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-800">Models</h3>
-                    <ul class="mt-2 space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Use scopes for common queries</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Keep validation logic in models</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-800">Example Service Object</h3>
-                    <div class="mt-2 bg-gray-50 rounded-lg">
-                        <pre><code class="language-ruby">class UserRegistrationService
-  def initialize(params)
-    @params = params
-  end
-
-  def call
-    user = User.new(user_params)
-    return user if user.save
-
-    false
-  end
-
-  private
-
-  attr_reader :params
-
-  def user_params
-    params.require(:user).permit(:email, :password)
-  end
-end</code></pre>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testing Standards -->
-        <section id="testing" class="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Testing Standards</h2>
-
-            <div class="space-y-6">
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-800">RSpec Guidelines</h3>
-                    <ul class="mt-2 space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Write descriptive test cases using RSpec's expressive syntax</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Use factorybot for test data</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Maintain high test coverage</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-800">Example Test</h3>
-                    <div class="mt-2 bg-gray-50 rounded-lg">
-                        <pre><code class="language-ruby">RSpec.describe User, type: :model do
-  describe "validations" do
-    it { should validate_presence_of(:email) }
-    it { should validate_uniqueness_of(:email) }
-  end
-
-  describe "#full_name" do
-    it "returns the concatenated first and last name" do
-      user = build(:user, first_name: "John", last_name: "Doe")
-      expect(user.full_name).to eq("John Doe")
-    end
-  end
-end</code></pre>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ViewComponents -->
-        <section id="view-components" class="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">ViewComponents</h2>
-
-            <div class="space-y-6">
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-800">Component Guidelines</h3>
-                    <ul class="mt-2 space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Keep components focused and single-purpose</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Include component previews</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
-                            <span>Test components thoroughly</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-800">Example Component</h3>
-                    <div class="mt-2 bg-gray-50 rounded-lg">
-                        <pre><code class="language-ruby"># app/components/button_component.rb
-class ButtonComponent < ViewComponent::Base
-  def initialize(label:, variant: :primary)
-    @label = label
-    @variant = variant
-  end
-
-  private
-
-  attr_reader :label, :variant
-end
-
-# app/components/button_component.html.erb
-<button class="<%= button_classes %>">
-  <%= label %>
-</button></code></pre>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Hotwire Stack -->
-        <section id="hotwire" class="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">Hotwire Stack</h2>
-            <p class="text-gray-600">Hotwire is a set of tools for building modern web applications with Ruby on Rails.</p>
-            <p class="mt-2 text-gray-600">Key components include:</p>
-            <ul class="mt-2 space-y-2 text-gray-600">
-                <li>
-                    <i class="fas fa-check text-green-500 mr-2"></i>
-                    <span>Stimulus: A modest JavaScript framework for the HTML you already have</span>
-                </li>
-                <li>
-                    <i class="fas fa-check text-green-500 mr-2"></i>
-                    <span>Turbo: Drive your web app with minimal JavaScript</span>
-                </li>
-                <li>
-                    <i class="fas fa-check text-green-500 mr-2"></i>
-                    <span>Turbo Streams: Real-time updates over WebSockets</span>
-                </li>
-            </ul>
-        </section>
-
-        <!-- TailwindCSS -->
-        <section id="tailwind" class="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 class="text-2xl font-semibold text-kalkomey-blue mb-4">TailwindCSS</h2>
-            <p class="text-gray-600">TailwindCSS is a utility-first CSS framework for rapidly building custom designs.</p>
-            <p class="mt-2 text-gray-600">Key features include:</p>
-            <ul class="mt-2 space-y-2 text-gray-600">
-                <li>
-                    <i class="fas fa-check text-green-500 mr-2"></i>
-                    <span>Responsive design utilities</span>
-                </li>
-                <li>
-                    <i class="fas fa-check text-green-500 mr-2"></i>
-                    <span>Customizable color palette</span>
-                </li>
-                <li>
-                    <i class="fas fa-check text-green-500 mr-2"></i>
-                    <span>Dark mode support</span>
-                </li>
-            </ul>
-        </section>
-
-        <!-- Footer -->
-        <footer class="bg-white rounded-lg shadow-sm p-6">
-            <p class="text-gray-600">© 2022 Kalkomey Enterprises, LLC. All rights reserved.</p>
-        </footer>
+        </div>
     </main>
-    <!-- Prism.js for code highlighting -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12">
+        <div class="container mx-auto px-4 py-6">
+            <p class="text-center text-gray-600">&copy; <span id="current-year"></span> Kalkomey Enterprises</p>
+        </div>
+    </footer>
+
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
-
